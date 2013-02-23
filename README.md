@@ -7,8 +7,8 @@ of video elements.
 instructions
 ------------
 add the user script to greasemonkey or tampermonkey, then use the open bracket
-key '[' to decrease the playback rate of video elements on a page, or use the
-close bracket key ']' to increase the playback rate of video elements on a 
+key <kbd>[</kbd> to decrease the playback rate of video elements on a page, or use the
+close bracket key <kbd>]</kbd> to increase the playback rate of video elements on a 
 page.
 
 you can alter the source code in greasemonkey or tampermonkey to apply the 
