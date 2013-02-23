@@ -23,7 +23,7 @@ are the ones that seem to be working:
 | keyboard shortcut              | action                                    |
 | ------------------------------ | ----------------------------------------- |
 | <kbd>space bar</kbd>           | toggles play/pause                        |
-| <kbd>←</kbd> <kbd>→</kbd>      | skip backwards or forwards 3 seconds      |
+| <kbd>←</kbd> <kbd>→</kbd>      | skip backwards or forwards 5 seconds      |
 | <kbd>↑</kbd> <kbd>↓</kbd>      | increase or decrease volume by 5%         |
 | <kbd>home</kbd> <kbd>end</kbd> | skip to the beginning or end of the video |
 | <kbd>0</kbd>--<kbd>9</kbd>     | skip to 0%--90% of the video              |
