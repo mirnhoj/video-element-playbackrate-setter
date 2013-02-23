@@ -20,13 +20,13 @@ additional notes
 don't forget about the standard youtube player's keyboard shortcuts. these
 are the ones that seem to be working:
 
-| keyboard shortcut             | action                                    |
-| ----------------------------- | ----------------------------------------- |
-| <kbd>  space bar  </kbd>      | toggles play/pause                        |
-| <kbd>←</kbd><kbd>→</kbd>      | skip backwards or forwards 3 seconds      |
-| <kbd>↑</kbd><kbd>↓</kbd>      | increase or decrease volume by 5%         |
-| <kbd>home</kbd><kbd>end</kbd> | skip to the beginning or end of the video |
-| <kbd>0</kbd>--<kbd>9</kbd>    | skip to 0%--90% of the video              |
+| keyboard shortcut                            | action                                    |
+| -------------------------------------------- | ----------------------------------------- |
+| <kbd>&nbsp;&nbsp;space bar&nbsp;&nbsp;</kbd> | toggles play/pause                        |
+| <kbd>←</kbd> <kbd>→</kbd>                    | skip backwards or forwards 3 seconds      |
+| <kbd>↑</kbd> <kbd>↓</kbd>                    | increase or decrease volume by 5%         |
+| <kbd>home</kbd> <kbd>end</kbd>               | skip to the beginning or end of the video |
+| <kbd>0</kbd> -- <kbd>9</kbd>                 | skip to 0%--90% of the video              |
 
 you can also see a list of keyboard shortcuts on one of youtube's help page
 (http://support.google.com/youtube/bin/answer.py?hl=en&answer=189278), but
