@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @name         video-element-rate-controller
-// @namespace    https://github.com/mirnhoj/video-element-control-script
+// @namespace    https://github.com/mirnhoj/video-element-playbackrate-setter
 // @version      0.1
 // @description  add keyboard shortcuts that will increase/decrease the playback rate for video elements.
 // @include      *youtube.com/*
