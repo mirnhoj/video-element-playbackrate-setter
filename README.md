@@ -6,13 +6,21 @@ of video elements.
 
 instructions
 ------------
-add the user script to greasemonkey or tampermonkey, then use the open bracket
-key <kbd>[</kbd> to decrease the playback rate of video elements on a page, or use the
-close bracket key <kbd>]</kbd> to increase the playback rate of video elements on a 
-page.
+first, grab the user script from either 
 
-you can alter the source code in greasemonkey or tampermonkey to apply the 
-script to other places besides youtube. you can also easily change the default
+http://userscripts.org/scripts/show/160029
+
+or
+
+https://github.com/mirnhoj/video-element-playbackrate-setter/
+
+then add the user script to greasemonkey or tampermonkey. after that, you should be
+able to navigate to a web page with a video element and adjust the playback rate.
+use the open bracket key <kbd>[</kbd> to decrease the playback rate or the close 
+bracket key <kbd>]</kbd> to increase the playback rate.
+
+optionally, you can alter the source code in greasemonkey or tampermonkey to apply 
+the script to other places besides youtube. you can also easily change the default
 playback rate and rate adjustment granularity.
 
 additional notes
