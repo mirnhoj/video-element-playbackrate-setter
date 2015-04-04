@@ -1,9 +1,10 @@
-﻿// ==UserScript==
+// ==UserScript==
 // @name         video-element-rate-controller
 // @namespace    https://github.com/mirnhoj/video-element-playbackrate-setter
 // @version      0.1
 // @description  add keyboard shortcuts that will increase/decrease the playback rate for video elements.
-// @include      *youtube.com/*
+// @include      http*://*.youtube.com/*
+// @include      http*://*.gfycat.com/*
 // ==/UserScript==
 // 
 // if you want to extend the functionality of this script to other sites
@@ -25,10 +26,10 @@ var speedStep = 0.1;
 
 var infobox = document.createElement("h1");
 infobox.setAttribute("id", "playbackrate-indicator");
-infobox.style.position = "fixed";
+infobox.style.position = "absolute";
 infobox.style.top = "10%";
 infobox.style.right = "10%";
-infobox.style.color = "rgba(255, 0, 0, 0.5)";
+infobox.style.color = "rgba(255, 0, 0, 0.382)";
 infobox.style.zIndex = "99999";  // ensures that it shows above other elements.
 infobox.style.visibility = "hidden";
 
@@ -39,13 +40,14 @@ function setPlaybackRate(rate) {
 
     // grab the video elements and set their playback rate
     var videoElements = document.querySelectorAll("video");
-    for (var i = 0; i < videoElements.length; i++) {
-        videoElements[i].playbackRate = rate;
-    }
-
+    //for (var i = 0; i < videoElements.length; i++) {
+    //   videoElements[i].playbackRate = rate;
+    //}
+    videoElements[0].playbackRate = rate;
+    
     // show infobox if not already added and update rate indicator.
     if (videoElements && !document.getElementById("playbackrate-indicator")) {
-        document.body.appendChild(infobox);
+        videoElements[0].parentElement.appendChild(infobox);
         infobox.style.visibility = "visible";
     }
     infobox.innerHTML = rate + "x";
