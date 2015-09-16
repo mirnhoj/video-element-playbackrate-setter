@@ -48,21 +48,15 @@ function setPlaybackRate(rate) {
     // show infobox if not already added and update rate indicator.
     if (videoElements && !document.getElementById("playbackrate-indicator")) {
         videoElements[0].parentElement.appendChild(infobox);
-        infobox.style.visibility = "visible";
     }
+    infobox.style.visibility = "visible";    
     infobox.innerHTML = rate + "x";
+    setTimeout(hideInfobox, 1000);
 }
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    setPlaybackRate(currentPlaybackRate);
-});
-
-
-// youtube videos don't always load on the DOMContentLoaded event :-/
-document.addEventListener('DOMNodeInserted', function() {
-    setPlaybackRate(currentPlaybackRate);
-});
+function hideInfobox() {
+    infobox.style.visibility = "hidden";
+}
 
 
 // mimic vlc keyboard shortcuts
