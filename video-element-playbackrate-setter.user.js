@@ -32,7 +32,7 @@ infobox.setAttribute("id", "playbackrate-indicator");
 infobox.style.position = "absolute";
 infobox.style.top = "10%";
 infobox.style.right = "10%";
-infobox.style.color = "rgba(255, 0, 0, 0.382)";
+infobox.style.color = "rgba(255, 0, 0, 1)";
 infobox.style.zIndex = "99999";  // ensures that it shows above other elements.
 infobox.style.visibility = "hidden";
 
