@@ -29,6 +29,7 @@ infobox.style.color = "rgba(255, 0, 0, 1)";
 infobox.style.zIndex = "99999";  // ensures that it shows above other elements.
 infobox.style.visibility = "hidden";
 
+var hideTime = 0;
 
 function modifyPlaybackRate(rateDiff) {
     // Grab the video elements and set their playback rate
@@ -44,7 +45,17 @@ function modifyPlaybackRate(rateDiff) {
     // Show and then hide the infobox
     infobox.style.visibility = "visible";    
     infobox.innerHTML = newRate + "x";
-    setTimeout(function() { infobox.style.visibility = "hidden" }, 1000);
+    
+    hideTime = new Date().getTime() + 1000;
+    hideInfobox();
+}
+
+function hideInfobox() {
+    if (new Date().getTime() > hideTime) {
+        infobox.style.visibility = "hidden";
+    } else {
+        setTimeout(hideInfobox, 100);
+    }
 }
 
 
