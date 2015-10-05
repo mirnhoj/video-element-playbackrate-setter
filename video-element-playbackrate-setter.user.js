@@ -29,6 +29,7 @@ infobox.style.right = "10%";
 infobox.style.color = "rgba(255, 0, 0, 1)";
 infobox.style.zIndex = "99999";  // ensures that it shows above other elements.
 infobox.style.visibility = "hidden";
+infobox.style.marginTop = "3%";
 
 var hideTime = 0;
 
