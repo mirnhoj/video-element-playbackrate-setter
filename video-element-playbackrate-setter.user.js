@@ -8,6 +8,7 @@
 // @include      http*://*.vimeo.com/*
 // @include      https://www.facebook.com/video.php*
 // @include      https://www.facebook.com/*/videos/*
+// @include      https://www.kickstarter.com/*
 // ==/UserScript==
 // 
 // if you want to extend the functionality of this script to other sites
