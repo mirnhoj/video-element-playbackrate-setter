@@ -5,82 +5,73 @@
 // @description  add keyboard shortcuts that will increase/decrease the playback rate for video elements.
 // @include      http*://*.youtube.com/*
 // @include      http*://*.gfycat.com/*
+// @include      http*://*.vimeo.com/*
+// @include      https://www.facebook.com/video.php*
+// @include      https://www.facebook.com/*/videos/*
+// @include      https://www.kickstarter.com/*
 // ==/UserScript==
 // 
 // if you want to extend the functionality of this script to other sites
 // besides youtube, add additional @include keys to the metadata block.
 //
-// if you want to change the default playback rate from 1x, change the line
-// "var currentPlaybackRate = 1;" to equal something other than 1, like 1.3 to
-// have all videos start playing at an increased speed, or 0.7 to have all
-// videos start playing at a decreased speed.
-//
 // if you want change the granularity of the playback rate adjustment, change
 // the line "var speedStep = 0.1;" to equal something other than 0.1, like 0.01
 // for more granular adjustments, or 0.25 for less granular adjustments. 
+// Rates will be rounded to 0.01.
 
-
-var currentPlaybackRate = 1;  // default playback rate.
 var speedStep = 0.1;
-
 
 var infobox = document.createElement("h1");
 infobox.setAttribute("id", "playbackrate-indicator");
 infobox.style.position = "absolute";
 infobox.style.top = "10%";
 infobox.style.right = "10%";
-infobox.style.color = "rgba(255, 0, 0, 0.382)";
+infobox.style.color = "rgba(255, 0, 0, 1)";
 infobox.style.zIndex = "99999";  // ensures that it shows above other elements.
 infobox.style.visibility = "hidden";
+infobox.style.marginTop = "3%";
 
+var hideTime = 0;
 
-function setPlaybackRate(rate) {
-    // fix floating point errors like 1.1 + 0.1 = 1.2000000000000002.
-    rate = Math.round(rate * (1 / speedStep)) / (1 / speedStep);
-
-    // grab the video elements and set their playback rate
-    var videoElements = document.querySelectorAll("video");
-    //for (var i = 0; i < videoElements.length; i++) {
-    //   videoElements[i].playbackRate = rate;
-    //}
-    videoElements[0].playbackRate = rate;
+function modifyPlaybackRate(rateDiff) {
+    // Grab the video elements and set their playback rate
+    var videoElement = document.getElementsByTagName("video")[0];
+    var newRate = Math.round((videoElement.playbackRate + rateDiff) * 100) / 100
+    videoElement.playbackRate = newRate
     
-    // show infobox if not already added and update rate indicator.
-    if (videoElements && !document.getElementById("playbackrate-indicator")) {
-        videoElements[0].parentElement.appendChild(infobox);
-        infobox.style.visibility = "visible";
+    // Show infobox if not already added and update rate indicator.
+    if (videoElement && !document.getElementById("playbackrate-indicator")) {
+        videoElement.parentElement.appendChild(infobox);
     }
-    infobox.innerHTML = rate + "x";
+    
+    // Show and then hide the infobox
+    infobox.style.visibility = "visible";    
+    infobox.innerHTML = newRate + "x";
+    
+    hideTime = new Date().getTime() + 1000;
+    hideInfobox();
+}
+
+function hideInfobox() {
+    if (new Date().getTime() > hideTime) {
+        infobox.style.visibility = "hidden";
+    } else {
+        setTimeout(hideInfobox, 100);
+    }
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    setPlaybackRate(currentPlaybackRate);
-});
-
-
-// youtube videos don't always load on the DOMContentLoaded event :-/
-document.addEventListener('DOMNodeInserted', function() {
-    setPlaybackRate(currentPlaybackRate);
-});
-
-
-// mimic vlc keyboard shortcuts
+// Mimic vlc keyboard shortcuts
 window.addEventListener('keydown', function(event) {
     var keycode = event.charCode || event.keyCode;
 
-    // decrease playback rate if '[' is pressed
+    // Decrease playback rate if '[' is pressed
     if (keycode === 91 || keycode === 123 || keycode === 219) {
-        currentPlaybackRate -= speedStep;
+        modifyPlaybackRate(-speedStep);
     }
 
-    // increase playback rate if ']' is pressed
+    // Increase playback rate if ']' is pressed
     if (keycode === 93 || keycode === 125 || keycode === 221) {
-        currentPlaybackRate += speedStep;
+        modifyPlaybackRate(speedStep);
     }
-
-    // need to set playback rate for all keydown events since it seems like the
-    // standard youtube keyboard shortcuts--like the arrow keys to skip forward
-    // and backwards--are set to reset the playback rate to 1.
-    setPlaybackRate(currentPlaybackRate);
 });
