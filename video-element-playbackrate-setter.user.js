@@ -43,13 +43,14 @@ infobox.style.marginTop = "3%";
 var timeoutID;
 
 
-function setPlaybackRate(rate) {
+function setPlaybackRate(rate, showInfobox) {
     // fix floating point errors like 1.1 + 0.1 = 1.2000000000000002.
     rate = Math.round(rate * (1 / speedStep)) / (1 / speedStep);
     
     // grab the video elements and set their playback rate.
     var videoElement = document.getElementsByTagName("video")[0];
     videoElement.playbackRate = rate;
+    infobox.innerHTML = rate + "x";
     
     // add infobox to dom if it doesn't already exist.
     if (videoElement && !document.getElementById("playbackrate-indicator")) {
@@ -57,25 +58,26 @@ function setPlaybackRate(rate) {
     }
     
     // show infobox and update rate indicator.
-    infobox.innerHTML = rate + "x";
-    infobox.style.visibility = "visible";    
+    if (showInfobox) {
+        infobox.style.visibility = "visible";    
     
-    // clear out any previous timers and have the infobox hide after 3 seconds.
-    window.clearTimeout(timeoutID);
-    timeoutID = window.setTimeout(function() {
-        infobox.style.visibility = "hidden";
-    }, 3000);
+        // clear out any previous timers and have the infobox hide after 3 seconds.
+        window.clearTimeout(timeoutID);
+        timeoutID = window.setTimeout(function() {
+            infobox.style.visibility = "hidden";
+        }, 3000);
+    }
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    setPlaybackRate(currentPlaybackRate);
+    setPlaybackRate(currentPlaybackRate, true);
 });
 
 
 // youtube videos don't always load on the DOMContentLoaded event :-/
 document.addEventListener('DOMNodeInserted', function() {
-    setPlaybackRate(currentPlaybackRate);
+    setPlaybackRate(currentPlaybackRate, false);
 });
 
 
@@ -96,5 +98,5 @@ window.addEventListener('keydown', function(event) {
     // need to set playback rate for all keydown events since it seems like the
     // standard youtube keyboard shortcuts--like the arrow keys to skip forward
     // and backwards--are set to reset the playback rate to 1.
-    setPlaybackRate(currentPlaybackRate);
+    setPlaybackRate(currentPlaybackRate, true);
 });
